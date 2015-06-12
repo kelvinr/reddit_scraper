@@ -1,0 +1,20 @@
+#! /usr/bin/env ruby
+
+require_relative 'scraper'
+require_relative 'mailer'
+
+base_url = 'https://www.reddit.com/r/'
+
+if ARGV.empty?
+  puts "You must specify a subreddit"
+else
+  url = "#{base_url}#{ARGV[0]}"
+
+  links = Scraper.new(url)
+  links.format
+
+  mail = Mailer.new
+  mail.send("kelvin060@gmail.com")
+end
+
+
